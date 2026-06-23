@@ -1,0 +1,18 @@
+{
+  "generated_at_utc": "2026-06-23T15:24:43.4489424+00:00",
+  "generated_at_local": "2026-06-24T00:24:43.4489424+09:00",
+  "image_width": 3840,
+  "image_height": 2160,
+  "display_mode": "Map locked",
+  "cloud_source": "XPlanet-compatible live cloud map",
+  "cloud_last_update": "2026-06-23T15:24:43.2243773+00:00",
+  "satellite_data_last_update": null,
+  "active_satellites": {
+    "LEO": [],
+    "MEO": [],
+    "GEO": []
+  },
+  "satellite_labels_enabled": false,
+  "app_version": "1.0.0",
+  "git_commit": "7ff52dc4db2ca59711622a9a804e542e0e9b5d28"
+}

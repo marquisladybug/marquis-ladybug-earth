@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Desktop Earth | Marquis Ladybug</title>
+  <style>
+    :root {
+      color: #171717;
+      background: #ffffff;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-synthesis: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+    }
+
+    main {
+      width: min(100%, 1540px);
+      margin: 0 auto;
+      padding: clamp(30px, 6vw, 96px) clamp(18px, 5vw, 76px) 48px;
+    }
+
+    header {
+      margin-bottom: clamp(18px, 2.5vw, 34px);
+    }
+
+    .wordmark {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .print {
+      padding: clamp(8px, 1.2vw, 16px);
+      border: 1px solid #e7e7e7;
+      background: #ffffff;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #f3f3f3;
+    }
+
+    .stamp {
+      margin: 10px 1px 0;
+      color: #686868;
+      font-size: 11px;
+      line-height: 1.4;
+      text-align: right;
+      letter-spacing: 0.02em;
+    }
+
+    .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 22px;
+      margin-top: 18px;
+      color: #777777;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .metadata span {
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: #8a8a8a;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-top: 24px;
+      }
+
+      .metadata {
+        display: block;
+      }
+
+      .metadata span {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="wordmark">Marquis Ladybug / Desktop Earth</p>
+    </header>
+    <figure>
+      <div class="print">
+        <img src="desktop-earth.jpg" width="3840" height="2160" alt="Current Desktop Earth view">
+        <figcaption class="stamp">Updated 24 Jun 2026 00:24 JST</figcaption>
+      </div>
+    </figure>
+    <section class="metadata" aria-label="Image metadata">
+      <span>Map locked</span>
+      <span>Satellites off</span>
+      <span>XPlanet-compatible live cloud map</span>
+    </section>
+    <footer>
+      Earth imagery: NASA. Clouds: contains modified EUMETSAT data. Orbital elements: CelesTrak.
+    </footer>
+  </main>
+</body>
+</html>
