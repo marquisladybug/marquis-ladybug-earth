@@ -1,18 +1,30 @@
 {
-  "generated_at_utc": "2026-06-23T15:51:15.7240087+00:00",
-  "generated_at_local": "2026-06-24T00:51:15.7240087+09:00",
+  "generated_at_utc": "2026-06-23T16:01:18.7232647+00:00",
+  "generated_at_local": "2026-06-24T01:01:18.7232647+09:00",
   "image_width": 3840,
   "image_height": 2160,
-  "display_mode": "Map locked",
+  "display_mode": "Sun locked",
   "cloud_source": "XPlanet-compatible live cloud map",
-  "cloud_last_update": "2026-06-23T15:51:15.4753923+00:00",
-  "satellite_data_last_update": null,
+  "cloud_last_update": "2026-06-23T16:01:04.9620844+00:00",
+  "satellite_data_last_update": "2026-06-23T16:01:18.6847137+00:00",
+  "satellites_enabled": true,
   "active_satellites": {
-    "LEO": [],
-    "MEO": [],
-    "GEO": []
+    "LEO": [
+      "ISS",
+      "NOAA-20"
+    ],
+    "MEO": [
+      "GPS PRN 24",
+      "Galileo 23"
+    ],
+    "GEO": [
+      "Himawari-9",
+      "GOES-East",
+      "GOES-West",
+      "Meteosat-12"
+    ]
   },
   "satellite_labels_enabled": false,
   "app_version": "1.0.0",
-  "git_commit": "7ff52dc4db2ca59711622a9a804e542e0e9b5d28"
+  "git_commit": "c9288ba943e8909c72d08ef052bde4350cc7c077"
 }
