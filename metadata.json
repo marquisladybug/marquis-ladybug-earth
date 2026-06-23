@@ -1,11 +1,11 @@
 {
-  "generated_at_utc": "2026-06-23T15:24:43.4489424+00:00",
-  "generated_at_local": "2026-06-24T00:24:43.4489424+09:00",
+  "generated_at_utc": "2026-06-23T15:51:15.7240087+00:00",
+  "generated_at_local": "2026-06-24T00:51:15.7240087+09:00",
   "image_width": 3840,
   "image_height": 2160,
   "display_mode": "Map locked",
   "cloud_source": "XPlanet-compatible live cloud map",
-  "cloud_last_update": "2026-06-23T15:24:43.2243773+00:00",
+  "cloud_last_update": "2026-06-23T15:51:15.4753923+00:00",
   "satellite_data_last_update": null,
   "active_satellites": {
     "LEO": [],
