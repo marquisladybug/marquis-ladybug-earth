@@ -1,0 +1,25 @@
+{
+  "generated_at_utc": "2026-06-24T00:19:48.4265795+00:00",
+  "generated_at_local": "2026-06-24T09:19:48.4265795+09:00",
+  "display_mode": "Sun locked",
+  "active_satellites": {
+    "LEO": [
+      "ISS",
+      "NOAA-20"
+    ],
+    "MEO": [
+      "GPS PRN 24",
+      "Galileo 23"
+    ],
+    "GEO": [
+      "Himawari-9",
+      "GOES-East",
+      "GOES-West",
+      "Meteosat-12"
+    ]
+  },
+  "satellite_labels_enabled": false,
+  "surface_frame_count": 12,
+  "cloud_archive_frame_count": 1,
+  "orbital_frame_count": 288
+}

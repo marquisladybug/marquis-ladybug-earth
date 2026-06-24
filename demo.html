@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Planetary Runtime Web Console demo playback">
+  <title>Planetary Runtime Web Console Demo</title>
+  <style>
+    :root {
+      color: #171717;
+      background: #ffffff;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-synthesis: none;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #ffffff;
+    }
+
+    main {
+      width: min(100%, 1540px);
+      margin: 0 auto;
+      padding: clamp(30px, 6vw, 96px) clamp(18px, 5vw, 76px) 48px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: clamp(18px, 2.5vw, 34px);
+    }
+
+    .wordmark {
+      margin: 0;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 11px;
+      border: 1px solid #dcdcdc;
+      color: #171717;
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      border-color: #9f9f9f;
+      outline: none;
+    }
+
+    .intro {
+      width: min(100%, 760px);
+      margin: 0 0 18px;
+      color: #686868;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0;
+    }
+
+    button {
+      min-height: 30px;
+      padding: 0 11px;
+      border: 1px solid #dcdcdc;
+      color: #171717;
+      background: #ffffff;
+      font: inherit;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    button[aria-pressed="true"],
+    button:hover,
+    button:focus-visible {
+      border-color: #8f8f8f;
+      outline: none;
+    }
+
+    figure {
+      margin: 0;
+    }
+
+    .print {
+      padding: clamp(8px, 1.2vw, 16px);
+      border: 1px solid #e7e7e7;
+      background: #ffffff;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      background: #f3f3f3;
+    }
+
+    .caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 10px 1px 0;
+      color: #686868;
+      font-size: 11px;
+      line-height: 1.45;
+      letter-spacing: 0.02em;
+    }
+
+    .chapter-title {
+      color: #171717;
+      font-weight: 600;
+    }
+
+    .empty {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      min-height: clamp(220px, 52vw, 720px);
+      border: 1px solid #ededed;
+      color: #767676;
+      background: #fafafa;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .metadata {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px 22px;
+      margin-top: 18px;
+      color: #777777;
+      font-size: 11px;
+      line-height: 1.55;
+    }
+
+    .metadata span {
+      white-space: nowrap;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: #8a8a8a;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-top: 24px;
+      }
+
+      .caption,
+      .metadata {
+        display: block;
+      }
+
+      .metadata span {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="wordmark">Marquis Ladybug / Planetary Runtime</p>
+      <nav class="nav" aria-label="Site">
+        <a href="index.html">Live</a>
+      </nav>
+    </header>
+    <p class="intro">
+      Static simulated/demo playback. These chapters are generated from the
+      Planetary Runtime renderer to show seasonal surfaces, archived cloud memory
+      when available, and one orbital day of tracked satellite motion.
+    </p>
+    <div class="controls" aria-label="Demo chapters">
+      <button type="button" data-chapter="surface">Surface</button>
+      <button type="button" data-chapter="clouds">Clouds</button>
+      <button type="button" data-chapter="orbits">Orbits</button>
+      <button type="button" data-chapter="all">Play All</button>
+    </div>
+    <figure>
+      <div class="print">
+        <img id="demo-frame" alt="Planetary Runtime demo frame">
+        <div id="demo-empty" class="empty"></div>
+        <figcaption class="caption">
+          <span><span id="chapter-title" class="chapter-title"></span> <span id="chapter-summary"></span></span>
+          <span id="frame-counter"></span>
+        </figcaption>
+      </div>
+    </figure>
+    <section class="metadata" aria-label="Demo metadata">
+      <span>Sun locked</span>
+      <span>Satellites: LEO / MEO / GEO</span>
+      <span>Labels off</span>
+      <span>Demo generated 24 Jun 2026 09:19 JST</span>
+    </section>
+    <footer>
+      Earth imagery: NASA. Clouds: contains modified EUMETSAT data. Orbital elements: CelesTrak.
+    </footer>
+  </main>
+  <script>
+    const chapters = [
+  {
+    "key": "surface",
+    "title": "Surface Cycle",
+    "summary": "Twelve simulated frames using the monthly ground texture set.",
+    "frames": [
+      "demo/surface/frame-01.jpg",
+      "demo/surface/frame-02.jpg",
+      "demo/surface/frame-03.jpg",
+      "demo/surface/frame-04.jpg",
+      "demo/surface/frame-05.jpg",
+      "demo/surface/frame-06.jpg",
+      "demo/surface/frame-07.jpg",
+      "demo/surface/frame-08.jpg",
+      "demo/surface/frame-09.jpg",
+      "demo/surface/frame-10.jpg",
+      "demo/surface/frame-11.jpg",
+      "demo/surface/frame-12.jpg"
+    ],
+    "emptyMessage": ""
+  },
+  {
+    "key": "clouds",
+    "title": "Cloud Memory",
+    "summary": "Real archived cloud snapshots when enough have accumulated.",
+    "frames": [
+      "demo/clouds/frame-001.jpg"
+    ],
+    "emptyMessage": "Cloud archive collecting"
+  },
+  {
+    "key": "orbits",
+    "title": "Orbital Day",
+    "summary": "A simulated 24-hour orbital sequence at 5-minute steps. Geography is map-locked while sunlight and tracked satellites advance.",
+    "frames": [
+      "demo/orbits/frame-001.jpg",
+      "demo/orbits/frame-002.jpg",
+      "demo/orbits/frame-003.jpg",
+      "demo/orbits/frame-004.jpg",
+      "demo/orbits/frame-005.jpg",
+      "demo/orbits/frame-006.jpg",
+      "demo/orbits/frame-007.jpg",
+      "demo/orbits/frame-008.jpg",
+      "demo/orbits/frame-009.jpg",
+      "demo/orbits/frame-010.jpg",
+      "demo/orbits/frame-011.jpg",
+      "demo/orbits/frame-012.jpg",
+      "demo/orbits/frame-013.jpg",
+      "demo/orbits/frame-014.jpg",
+      "demo/orbits/frame-015.jpg",
+      "demo/orbits/frame-016.jpg",
+      "demo/orbits/frame-017.jpg",
+      "demo/orbits/frame-018.jpg",
+      "demo/orbits/frame-019.jpg",
+      "demo/orbits/frame-020.jpg",
+      "demo/orbits/frame-021.jpg",
+      "demo/orbits/frame-022.jpg",
+      "demo/orbits/frame-023.jpg",
+      "demo/orbits/frame-024.jpg",
+      "demo/orbits/frame-025.jpg",
+      "demo/orbits/frame-026.jpg",
+      "demo/orbits/frame-027.jpg",
+      "demo/orbits/frame-028.jpg",
+      "demo/orbits/frame-029.jpg",
+      "demo/orbits/frame-030.jpg",
+      "demo/orbits/frame-031.jpg",
+      "demo/orbits/frame-032.jpg",
+      "demo/orbits/frame-033.jpg",
+      "demo/orbits/frame-034.jpg",
+      "demo/orbits/frame-035.jpg",
+      "demo/orbits/frame-036.jpg",
+      "demo/orbits/frame-037.jpg",
+      "demo/orbits/frame-038.jpg",
+      "demo/orbits/frame-039.jpg",
+      "demo/orbits/frame-040.jpg",
+      "demo/orbits/frame-041.jpg",
+      "demo/orbits/frame-042.jpg",
+      "demo/orbits/frame-043.jpg",
+      "demo/orbits/frame-044.jpg",
+      "demo/orbits/frame-045.jpg",
+      "demo/orbits/frame-046.jpg",
+      "demo/orbits/frame-047.jpg",
+      "demo/orbits/frame-048.jpg",
+      "demo/orbits/frame-049.jpg",
+      "demo/orbits/frame-050.jpg",
+      "demo/orbits/frame-051.jpg",
+      "demo/orbits/frame-052.jpg",
+      "demo/orbits/frame-053.jpg",
+      "demo/orbits/frame-054.jpg",
+      "demo/orbits/frame-055.jpg",
+      "demo/orbits/frame-056.jpg",
+      "demo/orbits/frame-057.jpg",
+      "demo/orbits/frame-058.jpg",
+      "demo/orbits/frame-059.jpg",
+      "demo/orbits/frame-060.jpg",
+      "demo/orbits/frame-061.jpg",
+      "demo/orbits/frame-062.jpg",
+      "demo/orbits/frame-063.jpg",
+      "demo/orbits/frame-064.jpg",
+      "demo/orbits/frame-065.jpg",
+      "demo/orbits/frame-066.jpg",
+      "demo/orbits/frame-067.jpg",
+      "demo/orbits/frame-068.jpg",
+      "demo/orbits/frame-069.jpg",
+      "demo/orbits/frame-070.jpg",
+      "demo/orbits/frame-071.jpg",
+      "demo/orbits/frame-072.jpg",
+      "demo/orbits/frame-073.jpg",
+      "demo/orbits/frame-074.jpg",
+      "demo/orbits/frame-075.jpg",
+      "demo/orbits/frame-076.jpg",
+      "demo/orbits/frame-077.jpg",
+      "demo/orbits/frame-078.jpg",
+      "demo/orbits/frame-079.jpg",
+      "demo/orbits/frame-080.jpg",
+      "demo/orbits/frame-081.jpg",
+      "demo/orbits/frame-082.jpg",
+      "demo/orbits/frame-083.jpg",
+      "demo/orbits/frame-084.jpg",
+      "demo/orbits/frame-085.jpg",
+      "demo/orbits/frame-086.jpg",
+      "demo/orbits/frame-087.jpg",
+      "demo/orbits/frame-088.jpg",
+      "demo/orbits/frame-089.jpg",
+      "demo/orbits/frame-090.jpg",
+      "demo/orbits/frame-091.jpg",
+      "demo/orbits/frame-092.jpg",
+      "demo/orbits/frame-093.jpg",
+      "demo/orbits/frame-094.jpg",
+      "demo/orbits/frame-095.jpg",
+      "demo/orbits/frame-096.jpg",
+      "demo/orbits/frame-097.jpg",
+      "demo/orbits/frame-098.jpg",
+      "demo/orbits/frame-099.jpg",
+      "demo/orbits/frame-100.jpg",
+      "demo/orbits/frame-101.jpg",
+      "demo/orbits/frame-102.jpg",
+      "demo/orbits/frame-103.jpg",
+      "demo/orbits/frame-104.jpg",
+      "demo/orbits/frame-105.jpg",
+      "demo/orbits/frame-106.jpg",
+      "demo/orbits/frame-107.jpg",
+      "demo/orbits/frame-108.jpg",
+      "demo/orbits/frame-109.jpg",
+      "demo/orbits/frame-110.jpg",
+      "demo/orbits/frame-111.jpg",
+      "demo/orbits/frame-112.jpg",
+      "demo/orbits/frame-113.jpg",
+      "demo/orbits/frame-114.jpg",
+      "demo/orbits/frame-115.jpg",
+      "demo/orbits/frame-116.jpg",
+      "demo/orbits/frame-117.jpg",
+      "demo/orbits/frame-118.jpg",
+      "demo/orbits/frame-119.jpg",
+      "demo/orbits/frame-120.jpg",
+      "demo/orbits/frame-121.jpg",
+      "demo/orbits/frame-122.jpg",
+      "demo/orbits/frame-123.jpg",
+      "demo/orbits/frame-124.jpg",
+      "demo/orbits/frame-125.jpg",
+      "demo/orbits/frame-126.jpg",
+      "demo/orbits/frame-127.jpg",
+      "demo/orbits/frame-128.jpg",
+      "demo/orbits/frame-129.jpg",
+      "demo/orbits/frame-130.jpg",
+      "demo/orbits/frame-131.jpg",
+      "demo/orbits/frame-132.jpg",
+      "demo/orbits/frame-133.jpg",
+      "demo/orbits/frame-134.jpg",
+      "demo/orbits/frame-135.jpg",
+      "demo/orbits/frame-136.jpg",
+      "demo/orbits/frame-137.jpg",
+      "demo/orbits/frame-138.jpg",
+      "demo/orbits/frame-139.jpg",
+      "demo/orbits/frame-140.jpg",
+      "demo/orbits/frame-141.jpg",
+      "demo/orbits/frame-142.jpg",
+      "demo/orbits/frame-143.jpg",
+      "demo/orbits/frame-144.jpg",
+      "demo/orbits/frame-145.jpg",
+      "demo/orbits/frame-146.jpg",
+      "demo/orbits/frame-147.jpg",
+      "demo/orbits/frame-148.jpg",
+      "demo/orbits/frame-149.jpg",
+      "demo/orbits/frame-150.jpg",
+      "demo/orbits/frame-151.jpg",
+      "demo/orbits/frame-152.jpg",
+      "demo/orbits/frame-153.jpg",
+      "demo/orbits/frame-154.jpg",
+      "demo/orbits/frame-155.jpg",
+      "demo/orbits/frame-156.jpg",
+      "demo/orbits/frame-157.jpg",
+      "demo/orbits/frame-158.jpg",
+      "demo/orbits/frame-159.jpg",
+      "demo/orbits/frame-160.jpg",
+      "demo/orbits/frame-161.jpg",
+      "demo/orbits/frame-162.jpg",
+      "demo/orbits/frame-163.jpg",
+      "demo/orbits/frame-164.jpg",
+      "demo/orbits/frame-165.jpg",
+      "demo/orbits/frame-166.jpg",
+      "demo/orbits/frame-167.jpg",
+      "demo/orbits/frame-168.jpg",
+      "demo/orbits/frame-169.jpg",
+      "demo/orbits/frame-170.jpg",
+      "demo/orbits/frame-171.jpg",
+      "demo/orbits/frame-172.jpg",
+      "demo/orbits/frame-173.jpg",
+      "demo/orbits/frame-174.jpg",
+      "demo/orbits/frame-175.jpg",
+      "demo/orbits/frame-176.jpg",
+      "demo/orbits/frame-177.jpg",
+      "demo/orbits/frame-178.jpg",
+      "demo/orbits/frame-179.jpg",
+      "demo/orbits/frame-180.jpg",
+      "demo/orbits/frame-181.jpg",
+      "demo/orbits/frame-182.jpg",
+      "demo/orbits/frame-183.jpg",
+      "demo/orbits/frame-184.jpg",
+      "demo/orbits/frame-185.jpg",
+      "demo/orbits/frame-186.jpg",
+      "demo/orbits/frame-187.jpg",
+      "demo/orbits/frame-188.jpg",
+      "demo/orbits/frame-189.jpg",
+      "demo/orbits/frame-190.jpg",
+      "demo/orbits/frame-191.jpg",
+      "demo/orbits/frame-192.jpg",
+      "demo/orbits/frame-193.jpg",
+      "demo/orbits/frame-194.jpg",
+      "demo/orbits/frame-195.jpg",
+      "demo/orbits/frame-196.jpg",
+      "demo/orbits/frame-197.jpg",
+      "demo/orbits/frame-198.jpg",
+      "demo/orbits/frame-199.jpg",
+      "demo/orbits/frame-200.jpg",
+      "demo/orbits/frame-201.jpg",
+      "demo/orbits/frame-202.jpg",
+      "demo/orbits/frame-203.jpg",
+      "demo/orbits/frame-204.jpg",
+      "demo/orbits/frame-205.jpg",
+      "demo/orbits/frame-206.jpg",
+      "demo/orbits/frame-207.jpg",
+      "demo/orbits/frame-208.jpg",
+      "demo/orbits/frame-209.jpg",
+      "demo/orbits/frame-210.jpg",
+      "demo/orbits/frame-211.jpg",
+      "demo/orbits/frame-212.jpg",
+      "demo/orbits/frame-213.jpg",
+      "demo/orbits/frame-214.jpg",
+      "demo/orbits/frame-215.jpg",
+      "demo/orbits/frame-216.jpg",
+      "demo/orbits/frame-217.jpg",
+      "demo/orbits/frame-218.jpg",
+      "demo/orbits/frame-219.jpg",
+      "demo/orbits/frame-220.jpg",
+      "demo/orbits/frame-221.jpg",
+      "demo/orbits/frame-222.jpg",
+      "demo/orbits/frame-223.jpg",
+      "demo/orbits/frame-224.jpg",
+      "demo/orbits/frame-225.jpg",
+      "demo/orbits/frame-226.jpg",
+      "demo/orbits/frame-227.jpg",
+      "demo/orbits/frame-228.jpg",
+      "demo/orbits/frame-229.jpg",
+      "demo/orbits/frame-230.jpg",
+      "demo/orbits/frame-231.jpg",
+      "demo/orbits/frame-232.jpg",
+      "demo/orbits/frame-233.jpg",
+      "demo/orbits/frame-234.jpg",
+      "demo/orbits/frame-235.jpg",
+      "demo/orbits/frame-236.jpg",
+      "demo/orbits/frame-237.jpg",
+      "demo/orbits/frame-238.jpg",
+      "demo/orbits/frame-239.jpg",
+      "demo/orbits/frame-240.jpg",
+      "demo/orbits/frame-241.jpg",
+      "demo/orbits/frame-242.jpg",
+      "demo/orbits/frame-243.jpg",
+      "demo/orbits/frame-244.jpg",
+      "demo/orbits/frame-245.jpg",
+      "demo/orbits/frame-246.jpg",
+      "demo/orbits/frame-247.jpg",
+      "demo/orbits/frame-248.jpg",
+      "demo/orbits/frame-249.jpg",
+      "demo/orbits/frame-250.jpg",
+      "demo/orbits/frame-251.jpg",
+      "demo/orbits/frame-252.jpg",
+      "demo/orbits/frame-253.jpg",
+      "demo/orbits/frame-254.jpg",
+      "demo/orbits/frame-255.jpg",
+      "demo/orbits/frame-256.jpg",
+      "demo/orbits/frame-257.jpg",
+      "demo/orbits/frame-258.jpg",
+      "demo/orbits/frame-259.jpg",
+      "demo/orbits/frame-260.jpg",
+      "demo/orbits/frame-261.jpg",
+      "demo/orbits/frame-262.jpg",
+      "demo/orbits/frame-263.jpg",
+      "demo/orbits/frame-264.jpg",
+      "demo/orbits/frame-265.jpg",
+      "demo/orbits/frame-266.jpg",
+      "demo/orbits/frame-267.jpg",
+      "demo/orbits/frame-268.jpg",
+      "demo/orbits/frame-269.jpg",
+      "demo/orbits/frame-270.jpg",
+      "demo/orbits/frame-271.jpg",
+      "demo/orbits/frame-272.jpg",
+      "demo/orbits/frame-273.jpg",
+      "demo/orbits/frame-274.jpg",
+      "demo/orbits/frame-275.jpg",
+      "demo/orbits/frame-276.jpg",
+      "demo/orbits/frame-277.jpg",
+      "demo/orbits/frame-278.jpg",
+      "demo/orbits/frame-279.jpg",
+      "demo/orbits/frame-280.jpg",
+      "demo/orbits/frame-281.jpg",
+      "demo/orbits/frame-282.jpg",
+      "demo/orbits/frame-283.jpg",
+      "demo/orbits/frame-284.jpg",
+      "demo/orbits/frame-285.jpg",
+      "demo/orbits/frame-286.jpg",
+      "demo/orbits/frame-287.jpg",
+      "demo/orbits/frame-288.jpg"
+    ],
+    "emptyMessage": ""
+  }
+];
+    const image = document.getElementById("demo-frame");
+    const empty = document.getElementById("demo-empty");
+    const title = document.getElementById("chapter-title");
+    const summary = document.getElementById("chapter-summary");
+    const counter = document.getElementById("frame-counter");
+    const buttons = Array.from(document.querySelectorAll("[data-chapter]"));
+    let selectedKey = "surface";
+    let frameIndex = 0;
+    let timer = 0;
+
+    function flattenAll() {
+      return {
+        key: "all",
+        title: "Play All",
+        summary: "All available demo chapters in sequence.",
+        frames: chapters.flatMap(chapter => chapter.frames),
+        emptyMessage: ""
+      };
+    }
+
+    function selectedChapter() {
+      return selectedKey === "all"
+        ? flattenAll()
+        : chapters.find(chapter => chapter.key === selectedKey) || chapters[0];
+    }
+
+    function render() {
+      const chapter = selectedChapter();
+      buttons.forEach(button => {
+        button.setAttribute(
+          "aria-pressed",
+          button.dataset.chapter === selectedKey ? "true" : "false");
+      });
+      title.textContent = chapter.title;
+      summary.textContent = chapter.emptyMessage
+        ? `${chapter.summary} ${chapter.emptyMessage}.`
+        : chapter.summary;
+      if (!chapter.frames.length) {
+        image.style.display = "none";
+        empty.style.display = "flex";
+        empty.textContent = chapter.emptyMessage || "Demo frames unavailable";
+        counter.textContent = "0 / 0";
+        return;
+      }
+
+      image.style.display = "block";
+      empty.style.display = "none";
+      frameIndex %= chapter.frames.length;
+      image.src = chapter.frames[frameIndex];
+      counter.textContent = `${frameIndex + 1} / ${chapter.frames.length}`;
+    }
+
+    function play() {
+      window.clearInterval(timer);
+      timer = window.setInterval(() => {
+        const chapter = selectedChapter();
+        if (chapter.frames.length) {
+          frameIndex = (frameIndex + 1) % chapter.frames.length;
+          render();
+        }
+      }, 420);
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        selectedKey = button.dataset.chapter || "surface";
+        frameIndex = 0;
+        render();
+        play();
+      });
+    });
+
+    render();
+    play();
+  </script>
+</body>
+</html>
