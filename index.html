@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Desktop Earth | Marquis Ladybug</title>
+  <meta name="description" content="Planetary Runtime Web Console">
+  <title>Planetary Runtime Web Console</title>
   <style>
     :root {
       color: #171717;
@@ -29,6 +30,10 @@
     }
 
     header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
       margin-bottom: clamp(18px, 2.5vw, 34px);
     }
 
@@ -38,6 +43,34 @@
       font-weight: 600;
       letter-spacing: 0.14em;
       text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-end;
+      min-width: 56px;
+    }
+
+    .nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 11px;
+      border: 1px solid #dcdcdc;
+      color: #171717;
+      background: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      border-color: #9f9f9f;
+      outline: none;
     }
 
     figure {
@@ -105,12 +138,15 @@
 <body>
   <main>
     <header>
-      <p class="wordmark">Marquis Ladybug / Desktop Earth</p>
+      <p class="wordmark">Marquis Ladybug / Planetary Runtime</p>
+      <nav class="nav" aria-label="Site">
+        <a href="demo.html">Demo</a>
+      </nav>
     </header>
     <figure>
       <div class="print">
-        <img src="desktop-earth.jpg" width="3840" height="2160" alt="Current Desktop Earth view">
-        <figcaption class="stamp">Updated 24 Jun 2026 06:19 JST</figcaption>
+        <img src="desktop-earth.jpg" width="3840" height="2160" alt="Current Planetary Runtime view">
+        <figcaption class="stamp">Updated 24 Jun 2026 09:17 JST</figcaption>
       </div>
     </figure>
     <section class="metadata" aria-label="Image metadata">
