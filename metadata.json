@@ -1,12 +1,12 @@
 {
-  "generated_at_utc": "2026-06-24T16:40:41.4106236+00:00",
-  "generated_at_local": "2026-06-25T01:40:41.4106236+09:00",
+  "generated_at_utc": "2026-06-24T22:01:44.0274575+00:00",
+  "generated_at_local": "2026-06-25T07:01:44.0274575+09:00",
   "image_width": 3840,
   "image_height": 2160,
   "display_mode": "Sun locked",
   "cloud_source": "XPlanet-compatible live cloud map",
-  "cloud_last_update": "2026-06-24T16:40:39.7501961+00:00",
-  "satellite_data_last_update": "2026-06-24T16:40:41.4072848+00:00",
+  "cloud_last_update": "2026-06-24T21:58:55.5121844+00:00",
+  "satellite_data_last_update": null,
   "satellites_enabled": true,
   "active_satellites": {
     "LEO": [
