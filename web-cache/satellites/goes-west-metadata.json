@@ -1,0 +1,8 @@
+{
+  "Success": true,
+  "SatelliteId": "goes-west",
+  "DisplayName": "GOES-West",
+  "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=51850\u0026FORMAT=tle",
+  "DownloadedAtUtc": "2026-06-26T02:46:34.8098666+00:00",
+  "TleEpochUtc": "2026-06-25T15:22:15.591072Z"
+}

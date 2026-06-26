@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "generated_at_utc": "2026-06-26T02:46:40.3590436+00:00",
+  "snapshots": [
+    {
+      "timestamp_utc": "2026-06-26T02:46:33+00:00",
+      "source_timestamp_utc": "2026-06-26T02:46:33+00:00",
+      "filename": "clouds-live-20260626024633.png",
+      "width": 1536,
+      "height": 768,
+      "sha256": "d07bf700d1d9b7510b13719efe1ee0d4623a0e44f23c39b5b06f8e5a43447aed"
+    }
+  ]
+}

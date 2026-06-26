@@ -1,0 +1,8 @@
+{
+  "Success": true,
+  "SatelliteId": "meteosat-12",
+  "DisplayName": "Meteosat-12",
+  "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=54743\u0026FORMAT=tle",
+  "DownloadedAtUtc": "2026-06-26T02:46:34.9081646+00:00",
+  "TleEpochUtc": "2026-06-25T17:43:53.394816Z"
+}

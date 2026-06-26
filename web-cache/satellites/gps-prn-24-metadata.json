@@ -1,0 +1,8 @@
+{
+  "Success": true,
+  "SatelliteId": "gps-prn-24",
+  "DisplayName": "GPS PRN 24",
+  "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=38833\u0026FORMAT=tle",
+  "DownloadedAtUtc": "2026-06-26T02:46:35.0058567+00:00",
+  "TleEpochUtc": "2026-06-25T07:02:17.4117119Z"
+}
