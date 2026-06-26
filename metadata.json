@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-06-26T03:18:52.3889377+00:00",
-  "generated_at_local": "2026-06-26T12:18:52.3889377+09:00",
+  "generated_at_utc": "2026-06-26T04:51:14.0377318+00:00",
+  "generated_at_local": "2026-06-26T13:51:14.0377318+09:00",
   "image_width": 3840,
   "image_height": 2160,
   "display_mode": "Sun locked",
@@ -29,5 +29,5 @@
   },
   "satellite_labels_enabled": false,
   "app_version": "1.0.0",
-  "git_commit": "802612d0173ec5c7c17d2ab94f580c9758eb43ce"
+  "git_commit": "81e6e9bae3917de188e31879dc20726e1c224a89"
 }
