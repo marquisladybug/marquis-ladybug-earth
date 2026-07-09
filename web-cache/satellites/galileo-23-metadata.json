@@ -3,6 +3,6 @@
   "SatelliteId": "galileo-23",
   "DisplayName": "Galileo 23",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=43566\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-07-08T07:01:39.2877825+00:00",
-  "TleEpochUtc": "2026-07-06T20:42:25.014528Z"
+  "DownloadedAtUtc": "2026-07-09T07:01:41.969614+00:00",
+  "TleEpochUtc": "2026-07-08T14:56:27.319488Z"
 }
