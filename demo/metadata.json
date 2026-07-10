@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-07-06T01:25:46.5989957+00:00",
-  "generated_at_local": "2026-07-06T10:25:46.5989957+09:00",
+  "generated_at_utc": "2026-07-10T07:08:56.7567053+00:00",
+  "generated_at_local": "2026-07-10T16:08:56.7567053+09:00",
   "display_mode": "Sun locked",
   "active_satellites": {
     "LEO": [
@@ -20,6 +20,6 @@
   },
   "satellite_labels_enabled": false,
   "surface_frame_count": 12,
-  "cloud_archive_frame_count": 11,
+  "cloud_archive_frame_count": 16,
   "orbital_frame_count": 288
 }
