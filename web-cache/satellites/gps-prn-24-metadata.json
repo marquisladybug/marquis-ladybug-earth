@@ -3,6 +3,6 @@
   "SatelliteId": "gps-prn-24",
   "DisplayName": "GPS PRN 24",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=38833\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-08-18T07:02:05.0552611+00:00",
-  "TleEpochUtc": "2026-08-17T15:21:37.014336Z"
+  "DownloadedAtUtc": "2026-08-19T07:01:58.7828697+00:00",
+  "TleEpochUtc": "2026-08-18T03:19:35.505696Z"
 }
