@@ -1,15 +1,7 @@
 {
   "version": 1,
-  "generated_at_utc": "2026-08-27T05:01:39.9964769+00:00",
+  "generated_at_utc": "2026-08-27T07:01:50.8097566+00:00",
   "snapshots": [
-    {
-      "timestamp_utc": "2026-08-07T06:35:24+00:00",
-      "source_timestamp_utc": "2026-08-07T06:35:24+00:00",
-      "filename": "clouds-live-20260807063524.png",
-      "width": 1536,
-      "height": 768,
-      "sha256": "6e971ba54917961b4758f08073044f61161bc53f986d469b8f3f0466c8f548bd"
-    },
     {
       "timestamp_utc": "2026-08-08T07:01:23+00:00",
       "source_timestamp_utc": "2026-08-08T07:01:23+00:00",
@@ -161,6 +153,14 @@
       "width": 1536,
       "height": 768,
       "sha256": "589c97000ab316f3b41d6a1ad9cad0411a2f6f3f40b32745b78d911aeb22f359"
+    },
+    {
+      "timestamp_utc": "2026-08-27T07:01:39+00:00",
+      "source_timestamp_utc": "2026-08-27T07:01:39+00:00",
+      "filename": "clouds-live-20260827070139.png",
+      "width": 1536,
+      "height": 768,
+      "sha256": "9ea80f754abfb5bd7affc4a67d808a3fcb1e97819a272cb4a02788f8f30c100c"
     }
   ]
 }
