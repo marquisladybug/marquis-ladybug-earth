@@ -3,6 +3,6 @@
   "SatelliteId": "meteosat-12",
   "DisplayName": "Meteosat-12",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=54743\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-08-30T15:01:35.930569+00:00",
-  "TleEpochUtc": "2026-08-30T04:16:55.5095999Z"
+  "DownloadedAtUtc": "2026-08-31T09:02:36.3078597+00:00",
+  "TleEpochUtc": "2026-08-31T04:13:59.0211839Z"
 }
