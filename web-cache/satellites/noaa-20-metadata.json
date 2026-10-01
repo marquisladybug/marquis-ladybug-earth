@@ -3,6 +3,6 @@
   "SatelliteId": "noaa-20",
   "DisplayName": "NOAA-20",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=43013\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-09-30T07:01:28.3763127+00:00",
-  "TleEpochUtc": "2026-09-29T19:32:05.7128639Z"
+  "DownloadedAtUtc": "2026-10-01T07:01:27.8602083+00:00",
+  "TleEpochUtc": "2026-09-30T22:36:04.9319999Z"
 }
