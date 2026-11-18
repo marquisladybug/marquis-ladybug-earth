@@ -3,6 +3,6 @@
   "SatelliteId": "goes-west",
   "DisplayName": "GOES-West",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=51850\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-11-17T09:01:57.9620672+00:00",
-  "TleEpochUtc": "2026-11-17T03:35:45.9772799Z"
+  "DownloadedAtUtc": "2026-11-18T07:02:05.3514589+00:00",
+  "TleEpochUtc": "2026-11-17T23:08:32.31024Z"
 }
