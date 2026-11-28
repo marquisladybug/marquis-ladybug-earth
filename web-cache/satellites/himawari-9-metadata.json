@@ -3,6 +3,6 @@
   "SatelliteId": "himawari-9",
   "DisplayName": "Himawari-9",
   "SourceUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=41836\u0026FORMAT=tle",
-  "DownloadedAtUtc": "2026-11-27T07:01:39.6607354+00:00",
-  "TleEpochUtc": "2026-11-24T21:59:11.923008Z"
+  "DownloadedAtUtc": "2026-11-28T07:01:20.7970279+00:00",
+  "TleEpochUtc": "2026-11-27T12:00:04.7960639Z"
 }
